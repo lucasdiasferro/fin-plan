@@ -1,11 +1,24 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
 
 export function Home(){
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Finance Planner</Text>
-            <Text style={styles.subtitle}>Tela Inicial</Text>
+            <View style={styles.titleContainer}>
+                <Text style={styles.title}>Finance Planner</Text>
+            </View>
+
+            <View style={styles.subContainer}>
+                <TextInput
+                style={styles.salayBox}
+                placeholder='Digite seu salário base'
+                placeholderTextColor='#999'
+                keyboardType='numeric'
+                />
+                <TouchableOpacity style={styles.nextButton}>
+                    <Text style={styles.subtitle}>Avançar</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -14,7 +27,11 @@ export function Home(){
 const styles = StyleSheet.create(
     {
         container: {flex:1, backgroundColor:'#130c53', alignItems:'center', justifyContent:'center'},
-        title: {color:'#ffff', fontWeight:'bold', fontSize:32, position:'absolute', top:'15%'},
-        subtitle:{color:'#b1afaf'},
+        subContainer:{justifyContent:'center',alignItems:'center'},
+        titleContainer:{position:'absolute', top:'15%'},
+        title: {color:'#ffff', fontWeight:'bold', fontSize:32, },
+        subtitle:{color:'#ebe4e4'},
+        salayBox:{color:'#ffff', backgroundColor:'#174768', height:48, width:230, borderRadius:20, marginBottom:'5%'},
+        nextButton:{backgroundColor:'#43518f', height:48, width:82, alignItems:'center', justifyContent:'center', borderRadius:20}
     }
 );
