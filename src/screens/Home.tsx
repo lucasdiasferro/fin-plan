@@ -6,15 +6,19 @@ import { useUserStore } from '../components/useUserStore';
 
 export function Home({navigation}: any){
 
-    const userSalary = useUserStore((state) => state.userSalary)
-    const setSalary = useUserStore((state) => state.setUserSalary)
+    const userSalary = useUserStore((state) => state.userSalary);
+    const setSalary = useUserStore((state) => state.setUserSalary);
+    const history = useUserStore((state) => state.history);
+    const setHistory = useUserStore((state) => state.setHistory);
+
 
     return (
         <View style={styles.container}>
+            {/*HEADER*/}
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>Finance Planner</Text>
             </View>
-
+            {/*salaryContainer*/}
             <View style={styles.subContainer}>
                 <TextInput
                 style={styles.salayBox}
@@ -26,6 +30,7 @@ export function Home({navigation}: any){
                 value={userSalary}
                 onChangeText={setSalary}
                 
+                
                 autoComplete="off"
                 importantForAutofill="no"
                 autoCorrect={false}
@@ -33,10 +38,20 @@ export function Home({navigation}: any){
                 textContentType="none"
                 />
                 <TouchableOpacity style={styles.nextButton}
-                onPress={() =>{navigation.navigate('Testes')}}>
+                onPress={() =>{navigation.navigate('Testes')
+                    setHistory(userSalary);
+                    
+                }}>
                     <Text style={styles.subtitle}>Avançar</Text>
                 </TouchableOpacity>
             </View>
+
+            {/*history*/}
+            <View style={styles.historyContainer}>
+                
+
+            </View>
+
         </View>
     );
 }
@@ -49,7 +64,10 @@ const styles = StyleSheet.create(
         titleContainer:{position:'absolute', top:'15%'},
         title: {color:'#559347', fontWeight:'bold', fontSize:32, },
         subtitle:{color:'#999'},
-        salayBox:{backgroundColor:'#2d4e26', height:48, width:230, borderRadius:20, marginBottom:20, padding:15},
-        nextButton:{backgroundColor:'#375f2e', height:48, width:82, alignItems:'center', justifyContent:'center', borderRadius:20}
+        salayBox:{color:'#192b15', backgroundColor:'#2d4e26', height:48, width:230, borderRadius:20, marginBottom:20, padding:15},
+        nextButton:{backgroundColor:'#375f2e', height:48, width:82, alignItems:'center', justifyContent:'center', borderRadius:20},
+        historyContainer:{backgroundColor:'#55934791', height:330, width:300, bottom:20, position:'absolute'},
+
+
     }
 );
