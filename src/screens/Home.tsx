@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, TextInput, Image} from 'react-native';
 
 import { useUserStore } from '../components/useUserStore';
 
@@ -38,7 +38,8 @@ export function Home({navigation}: any){
                 textContentType="none"
                 />
                 <TouchableOpacity style={styles.nextButton}
-                onPress={() =>{navigation.navigate('Testes')
+                onPress={() =>{
+                    
                     setHistory(userSalary);
                     
                 }}>
@@ -48,8 +49,41 @@ export function Home({navigation}: any){
 
             {/*history*/}
             <View style={styles.historyContainer}>
-                
+                {
+                    history.map((historico,index) =>{
+                        
+                        historico = historico.replace('.','')
 
+                        const newHist = parseFloat(historico.replace(',','.')).toLocaleString('pt-BR', {style: 'currency', currency:'BRL'});
+                        
+                        return(
+                            
+                            <View
+                            
+                            key={index}
+                            >
+                                <TouchableOpacity
+                                style={styles.salaryHistoryButton}
+                                >
+                                    <Text
+                                    style={styles.salaryHistoryText}
+                                    >{newHist}</Text>
+
+                                    <TouchableOpacity>
+                                        <Image 
+                                        source={require('../../assets/lixeira.png')}
+                                        style={styles.trashIcon}
+                                        />
+                                    </TouchableOpacity>
+
+                                </TouchableOpacity>
+
+                                
+                            </View>
+                        )
+                    })
+                    
+                }
             </View>
 
         </View>
@@ -66,8 +100,10 @@ const styles = StyleSheet.create(
         subtitle:{color:'#999'},
         salayBox:{color:'#192b15', backgroundColor:'#2d4e26', height:48, width:230, borderRadius:20, marginBottom:20, padding:15},
         nextButton:{backgroundColor:'#375f2e', height:48, width:82, alignItems:'center', justifyContent:'center', borderRadius:20},
-        historyContainer:{backgroundColor:'#55934791', height:330, width:300, bottom:20, position:'absolute'},
-
+        historyContainer:{backgroundColor:'#55934791', height:330, width:300, bottom:20, position:'absolute', borderRadius:20},
+        salaryHistoryButton:{flexDirection:'row', backgroundColor:'#223f1baa', marginHorizontal:15, marginTop:10, alignItems:'center', justifyContent:'space-between', height:28},
+        salaryHistoryText:{color:'#55934791', left: 50},
+        trashIcon: {width:24, height:24, right:25}
 
     }
 );
