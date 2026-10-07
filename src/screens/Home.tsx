@@ -72,7 +72,12 @@ export function Home({navigation}: any){
 
                                 </TouchableOpacity>
 
-                                <TouchableOpacity>
+                                <TouchableOpacity
+                                
+                                onPress={() => {
+                                    
+                                }}
+                                >
                                         <Image 
                                         source={require('../../assets/lixeira.png')}
                                         style={styles.trashIcon}
@@ -87,7 +92,7 @@ export function Home({navigation}: any){
 
         </View>
     );
-}
+} 
 
 
 const styles = StyleSheet.create(
