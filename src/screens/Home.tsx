@@ -57,9 +57,8 @@ export function Home({navigation}: any){
                         const newHist = parseFloat(historico.replace(',','.')).toLocaleString('pt-BR', {style: 'currency', currency:'BRL'});
                         
                         return(
-                            
                             <View
-                            
+                            style={styles.salaryHistoryContainer}
                             key={index}
                             >
                                 <TouchableOpacity
@@ -69,16 +68,16 @@ export function Home({navigation}: any){
                                     style={styles.salaryHistoryText}
                                     >{newHist}</Text>
 
-                                    <TouchableOpacity>
+                                    
+
+                                </TouchableOpacity>
+
+                                <TouchableOpacity>
                                         <Image 
                                         source={require('../../assets/lixeira.png')}
                                         style={styles.trashIcon}
                                         />
                                     </TouchableOpacity>
-
-                                </TouchableOpacity>
-
-                                
                             </View>
                         )
                     })
@@ -101,9 +100,10 @@ const styles = StyleSheet.create(
         salayBox:{color:'#192b15', backgroundColor:'#2d4e26', height:48, width:230, borderRadius:20, marginBottom:20, padding:15},
         nextButton:{backgroundColor:'#375f2e', height:48, width:82, alignItems:'center', justifyContent:'center', borderRadius:20},
         historyContainer:{backgroundColor:'#55934791', height:330, width:300, bottom:20, position:'absolute', borderRadius:20},
-        salaryHistoryButton:{flexDirection:'row', backgroundColor:'#223f1baa', marginHorizontal:15, marginTop:10, alignItems:'center', justifyContent:'space-between', height:28},
-        salaryHistoryText:{color:'#55934791', left: 50},
-        trashIcon: {width:24, height:24, right:25}
+        salaryHistoryButton:{backgroundColor:'#223f1baa', alignItems:'center', justifyContent:'center', width:238,height:28},
+        salaryHistoryText:{color:'#55934791',},
+        salaryHistoryContainer:{flexDirection:'row', alignItems:'center', justifyContent:'center', marginHorizontal:15, marginTop:10, height:28},
+        trashIcon: {width:28, height:28}
 
     }
 );
