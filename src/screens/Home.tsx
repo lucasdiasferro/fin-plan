@@ -10,7 +10,7 @@ export function Home({navigation}: any){
     const setSalary = useUserStore((state) => state.setUserSalary);
     const history = useUserStore((state) => state.history);
     const setHistory = useUserStore((state) => state.setHistory);
-
+    const delHistory = useUserStore((state) => state.deleteHistory);
 
     return (
         <View style={styles.container}>
@@ -75,7 +75,7 @@ export function Home({navigation}: any){
                                 <TouchableOpacity
                                 
                                 onPress={() => {
-                                    
+                                    delHistory(index);
                                 }}
                                 >
                                         <Image 
