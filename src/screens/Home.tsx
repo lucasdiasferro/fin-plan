@@ -39,7 +39,7 @@ export function Home({navigation}: any){
                 />
                 <TouchableOpacity style={styles.nextButton}
                 onPress={() =>{
-                    
+                    navigation.navigate('Planner')
                     setHistory(userSalary);
                     
                 }}>
@@ -63,6 +63,9 @@ export function Home({navigation}: any){
                             >
                                 <TouchableOpacity
                                 style={styles.salaryHistoryButton}
+                                onPress={()=>{
+                                    navigation.navigate('Planner')
+                                }}
                                 >
                                     <Text
                                     style={styles.salaryHistoryText}
@@ -98,11 +101,11 @@ export function Home({navigation}: any){
 const styles = StyleSheet.create(
     {
         container: {flex:1, backgroundColor:'#192b15', alignItems:'center', justifyContent:'center'},
-        subContainer:{justifyContent:'center',alignItems:'center'},
+        subContainer:{justifyContent:'center',alignItems:'center', width:'100%', height:'100%'},
         titleContainer:{position:'absolute', top:'15%'},
         title: {color:'#559347', fontWeight:'bold', fontSize:32, },
         subtitle:{color:'#999'},
-        salayBox:{color:'#192b15', backgroundColor:'#2d4e26', height:48, width:230, borderRadius:20, marginBottom:20, padding:15},
+        salayBox:{color:'#192b15', backgroundColor:'#2d4e26', height:'5%', width:'75%', borderRadius:20, marginBottom:'5%', padding:'3%'},
         nextButton:{backgroundColor:'#375f2e', height:48, width:82, alignItems:'center', justifyContent:'center', borderRadius:20},
         historyContainer:{backgroundColor:'#55934791', height:330, width:300, bottom:20, position:'absolute', borderRadius:20},
         salaryHistoryButton:{backgroundColor:'#223f1baa', alignItems:'center', justifyContent:'center', width:238,height:28},

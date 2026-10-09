@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Home } from './src/screens/Home';
 import { Testes } from './src/screens/Testes';
+import { Planner } from './src/screens/Planner';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function App() {
 
         <Stack.Screen name='Testes' component={Testes} />
 
+        <Stack.Screen name='Planner' component={Planner}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
