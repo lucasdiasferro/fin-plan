@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, TextInput, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Keyboard} from 'react-native';
 
 import { useUserStore } from '../components/useUserStore';
 
@@ -39,8 +39,16 @@ export function Home({navigation}: any){
                 />
                 <TouchableOpacity style={styles.nextButton}
                 onPress={() =>{
-                    navigation.navigate('Planner')
-                    setHistory(userSalary);
+                    if (userSalary.trim() === '') {
+                        return; 
+                    }
+                    Keyboard.dismiss();
+                    navigation.navigate('Planner');
+
+                    setTimeout(() => {
+                        setHistory(userSalary);
+                    }, 300);
+                    
                     
                 }}>
                     <Text style={styles.subtitle}>Avançar</Text>
@@ -52,10 +60,13 @@ export function Home({navigation}: any){
                 {
                     history.map((historico,index) =>{
                         
-                        historico = historico.replace('.','')
+                        let historicoLimpo = historico.replace('.', ',');
+                        let valorNum = parseFloat(historicoLimpo.replace(',','.'));
 
-                        const newHist = parseFloat(historico.replace(',','.')).toLocaleString('pt-BR', {style: 'currency', currency:'BRL'});
-                        
+                        let newHist = isNaN(valorNum)
+                        ? 'R$0,00'
+                        : valorNum.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+
                         return(
                             <View
                             style={styles.salaryHistoryContainer}
@@ -63,7 +74,8 @@ export function Home({navigation}: any){
                             >
                                 <TouchableOpacity
                                 style={styles.salaryHistoryButton}
-                                onPress={()=>{
+                                onPress={()=>{userSalary == historico
+                                    
                                     navigation.navigate('Planner')
                                 }}
                                 >
@@ -105,11 +117,11 @@ const styles = StyleSheet.create(
         titleContainer:{position:'absolute', top:'15%'},
         title: {color:'#559347', fontWeight:'bold', fontSize:32, },
         subtitle:{color:'#999'},
-        salayBox:{color:'#192b15', backgroundColor:'#2d4e26', height:'5%', width:'75%', borderRadius:20, marginBottom:'5%', padding:'3%'},
+        salayBox:{color:'#dafad3', backgroundColor:'#2d4e26', height:'5%', width:'75%', borderRadius:20, marginBottom:'5%', padding:'3%'},
         nextButton:{backgroundColor:'#375f2e', height:48, width:82, alignItems:'center', justifyContent:'center', borderRadius:20},
         historyContainer:{backgroundColor:'#55934791', height:330, width:300, bottom:20, position:'absolute', borderRadius:20},
         salaryHistoryButton:{backgroundColor:'#223f1baa', alignItems:'center', justifyContent:'center', width:238,height:28},
-        salaryHistoryText:{color:'#55934791',},
+        salaryHistoryText:{color:'#dafad3',},
         salaryHistoryContainer:{flexDirection:'row', alignItems:'center', justifyContent:'center', marginHorizontal:15, marginTop:10, height:28},
         trashIcon: {width:28, height:28}
 

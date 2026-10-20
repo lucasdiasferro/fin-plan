@@ -7,15 +7,23 @@ export function Planner({navigation}: any){
 
     const userSalary = useUserStore((state) => state.userSalary);
 
+    let salary = parseFloat(userSalary.replace(',','.')).toLocaleString('ptbr', {style:'currency',currency:'BRL'})
 
     return(
         <View style={styles.container}>
             <View
-            style={styles.salaryViewContainer}
+            style={styles.topViewContainer}
             >
-                <Text
+                <View
+                style={styles.salaryContainer}
+                >
+                    <Text
                 style={styles.salaryText}
-                >{userSalary}</Text>    
+                numberOfLines={1}
+                adjustsFontSizeToFit={true}
+                >{salary}</Text> 
+                </View>
+                   
             </View>
         </View>
         
@@ -28,6 +36,7 @@ export function Planner({navigation}: any){
 const styles = StyleSheet.create(
     {
         container: {flex:1, backgroundColor:'#192b15', alignItems:'center', justifyContent:'center'},
-        salaryViewContainer:{backgroundColor:'#223f1baa', width:'100%',},
-        salaryText:{color:'#fff'},
+        topViewContainer:{backgroundColor:'#223f1baa', width:'100%', height:'15%', top:'0%', position:'absolute', borderRadius:'5%'},
+        salaryContainer:{backgroundColor:'#2c5f1faa', width:'30%', height:'50%', alignItems:'center', justifyContent:'center',borderRadius:'20%', bottom:'15%', position:'absolute', marginLeft:'2%'},
+        salaryText:{color:'#fff',fontSize:18, marginLeft:'2%'},
     })
